@@ -13,7 +13,7 @@ interface Props {
   href: string;
 }
 
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   .mobile-icon {
@@ -41,23 +41,26 @@ const Logo: React.FC<Props> = ({ isPushed, togglePush, isDark, href }) => {
   );
 
   return (
-    <Flex>
-      <MenuButton aria-label="Toggle menu" onClick={togglePush} mr="24px">
+    <Flex px="20px" justifyContent="space-between" alignItems="center" >
+      {/* <MenuButton aria-label="Toggle menu" onClick={togglePush} mr="24px">
         {isPushed ? (
           <HamburgerCloseIcon width="24px" color="textSubtle" />
         ) : (
           <HamburgerIcon width="24px" color="textSubtle" />
         )}
-      </MenuButton>
+      </MenuButton> */}
       {isAbsoluteUrl ? (
         <StyledLink as="a" to={href} aria-label="Pancake home page">
+          sss
           {innerLogo}
         </StyledLink>
       ) : (
         <StyledLink to={href} aria-label="Pancake home page">
           {innerLogo}
+          
         </StyledLink>
       )}
+
     </Flex>
   );
 };
