@@ -21,6 +21,7 @@ const StyledHeader = styled(PageHeader)`
   max-height: max-content;
   margin-bottom: -40px;
   padding-bottom: 40px;
+  background: #030303;
   overflow: hidden;
   ${({ theme }) => theme.mediaQueries.md} {
     max-height: 600px;
@@ -50,6 +51,7 @@ const Right = styled(Flex)`
     }
   }
 `
+
 
 const AuctionContainer = styled(Flex)`
   width: 100%;

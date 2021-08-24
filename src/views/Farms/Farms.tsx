@@ -382,7 +382,7 @@ const Farms: React.FC = () => {
 
   return (
     <>
-      <PageHeader>
+      <PageHeader background="red">
         <Heading as="h1" scale="xxl" color="secondary" mb="24px">
           {t('Farms')}
         </Heading>
@@ -398,7 +398,7 @@ const Farms: React.FC = () => {
           </Button>
         </NavLink>
       </PageHeader>
-      <Page>
+      <Page style={{background:"red"}}>
         <ControlContainer>
           <ViewControls>
             <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
