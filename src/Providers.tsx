@@ -11,17 +11,21 @@ import { RefreshContextProvider } from 'contexts/RefreshContext'
 import { ToastsProvider } from 'contexts/ToastsContext'
 import store from 'state'
 
+const helmetContext = {};
+
 const ThemeProviderWrapper = (props) => {
   const [isDark] = useThemeManager()
   return <ThemeProvider theme={isDark ? dark : light} {...props} />
 }
+
+
 
 const Providers: React.FC = ({ children }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
       <Provider store={store}>
         <ToastsProvider>
-          <HelmetProvider>
+          <HelmetProvider context={helmetContext}>
             <ThemeProviderWrapper>
               <LanguageProvider>
                 <RefreshContextProvider>

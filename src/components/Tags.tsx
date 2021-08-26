@@ -21,6 +21,8 @@ const CoreTag: React.FC<TagProps> = (props) => {
   )
 }
 
+
+
 const CommunityTag: React.FC<TagProps> = (props) => {
   const { t } = useTranslation()
   return (

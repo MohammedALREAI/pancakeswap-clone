@@ -53,6 +53,9 @@ margin:4px;
 object-fit: cover;
 
 `
+interface ThemeDark{
+  isDark?:boolean
+}
 
 const StyledNav = styled.nav<{ showMenu: boolean ,isDark?:boolean}>`
   position: fixed;
@@ -66,8 +69,8 @@ const StyledNav = styled.nav<{ showMenu: boolean ,isDark?:boolean}>`
   padding-right: 16px;
   width: 100%;
   height: ${MENU_HEIGHT}px;
-  background-color: ${(props)=>props.isDark?"#121217":"#FFFFFF"};
-  color: ${(props)=>props.isDark?"#D0D1DC":"#737596"};
+  background-color: ${(props)=> !props.isDark?"#121217":"#FFFFFF"};
+  color: ${(props)=>!props.isDark?"#FFFFFF":"#737596"};
   border-bottom: solid 2px rgba(133, 133, 133, 0.1);
   z-index: 20;
   transform: translate3d(0, 0, 0);
@@ -150,18 +153,17 @@ color: #FFFFFF;
 
 `;
 
-const MainnetText=styled(Text)`
-
-
+const MainnetText=styled(Text)<ThemeDark>`
 font-style: normal;
 font-weight: bold;
 font-size: 18px;
 line-height: 24px;
 text-align: right;
 text-decoration-line: underline;
+text-decoration-color: red; 
 font-feature-settings: 'pnum' on, 'lnum' on;
 
-color: #161616;
+color: ${(props)=>!props.isDark?"#FFFFFF":"#161616"};
 
 `
 
@@ -255,7 +257,7 @@ const Menu: React.FC<NavProps> = ({
                 marginLeft:"24px"
           }}>
               <Dot/>
-            <Text style={{textDecoration:"underline"}}>Mainnet</Text>
+            <MainnetText style={{textDecoration:"underline"}}>Mainnet</MainnetText>
           </Flex>
           <Flex ml="68px">
          <HeaderButtonIcon>
@@ -269,7 +271,7 @@ const Menu: React.FC<NavProps> = ({
         </Flex>
       </StyledNav>
       <BodyWrapper>
-        {/* <Panel
+        <Panel
           isPushed={isPushed}
           isMobile={isMobile}
           showMenu={showMenu}
@@ -281,7 +283,7 @@ const Menu: React.FC<NavProps> = ({
           cakePriceUsd={cakePriceUsd}
           pushNav={setIsPushed}
           links={links}
-        /> */}
+        />
         <Inner isPushed={isPushed} showMenu={showMenu}>
           {children}
         </Inner>
