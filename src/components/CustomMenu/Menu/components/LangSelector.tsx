@@ -8,6 +8,7 @@ import React from "react";
 import * as IconModule from "../icons";
 import { LangType } from "../types";
 import MenuButton from "./MenuButton";
+import { HeaderButtonIconSun } from "./ThemeSwitcher";
 
 const Icons = (IconModule as unknown) as { [key: string]: React.FC<SvgProps> };
 const { LanguageIcon } = Icons;
@@ -19,26 +20,27 @@ interface Props {
 }
 
 const LangSelector: React.FC<Props> = ({ currentLang, langs, setLang }) => (
+  <HeaderButtonIconSun>
   <Dropdown
-    position="top-right"
     target={
-      <Button variant="text" startIcon={<LanguageIcon color="textSubtle" width="24px" />}>
-        <Text color="textSubtle">{currentLang?.toUpperCase()}</Text>
+      <Button variant="text">
+        <Text>{currentLang?.toUpperCase()}</Text>
       </Button>
     }
   >
     {langs.map((lang) => (
-      <MenuButton
-        key={lang.code}
+      <MenuButton  
+      key={lang.code}
         fullWidth
         onClick={() => setLang(lang)}
         // Safari fix
-        style={{ minHeight: "32px", height: "auto" }}
+        style={{ minHeight: "30px", height: "40px" }}
       >
         {lang.language}
       </MenuButton>
     ))}
   </Dropdown>
+  </HeaderButtonIconSun>
 );
 
 export default React.memo(LangSelector, (prev, next) => prev.currentLang === next.currentLang);

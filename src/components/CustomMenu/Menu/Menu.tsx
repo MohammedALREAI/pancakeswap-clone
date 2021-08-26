@@ -13,6 +13,8 @@ import Avatar from "./components/Avatar";
 import { MENU_HEIGHT, SIDEBAR_WIDTH_REDUCED, SIDEBAR_WIDTH_FULL } from "./config";
 import { TwitterIcon } from "./icons";
 import { HeaderButtonIcon } from "./components/Boxs/Index";
+import ThemeSwitcher from "./components/ThemeSwitcher";
+import LangSelector from "./components/LangSelector";
 
 
 const Wrapper = styled.div`
@@ -20,6 +22,7 @@ const Wrapper = styled.div`
   width: 100%;
   margin:0px  auto ;
   background-color: "${({ theme }) => theme.nav.background}";
+  color: ${({ theme }) => theme.colors.text};
 
 `;
 
@@ -69,8 +72,8 @@ const StyledNav = styled.nav<{ showMenu: boolean ,isDark?:boolean}>`
   padding-right: 16px;
   width: 100%;
   height: ${MENU_HEIGHT}px;
-  background-color: ${(props)=> !props.isDark?"#121217":"#FFFFFF"};
-  color: ${(props)=>!props.isDark?"#FFFFFF":"#737596"};
+  background-color: ${(props)=> props.isDark?"#121217":"#FFFFFF"};
+  color: ${(props)=>props.isDark?"#FFFFFF":"#737596"};
   border-bottom: solid 2px rgba(133, 133, 133, 0.1);
   z-index: 20;
   transform: translate3d(0, 0, 0);
@@ -221,7 +224,7 @@ const Menu: React.FC<NavProps> = ({
 
   return (
     <Wrapper>
-      <StyledNav showMenu={showMenu}>
+      <StyledNav isDark={!!isDark} showMenu={showMenu}>
  
       <Flex justifyContent="space-between" alignItems="center">
         <Logo
@@ -259,19 +262,15 @@ const Menu: React.FC<NavProps> = ({
               <Dot/>
             <MainnetText style={{textDecoration:"underline"}}>Mainnet</MainnetText>
           </Flex>
-          <Flex ml="68px">
-         <HeaderButtonIcon>
-       <Text color="#FFFFFF">EN</Text>
-         </HeaderButtonIcon>
+          <Flex ml="68px" justifyContent="space-between" alignItems="center">
+         <LangSelector currentLang={currentLang} langs={langs} setLang={setLang} />
+          <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
 
-         <HeaderButtonIcon>
-       <DarkThemeIcon/>
-         </HeaderButtonIcon>
         </Flex>
         </Flex>
       </StyledNav>
       <BodyWrapper>
-        <Panel
+        {/* <Panel
           isPushed={isPushed}
           isMobile={isMobile}
           showMenu={showMenu}
@@ -283,7 +282,7 @@ const Menu: React.FC<NavProps> = ({
           cakePriceUsd={cakePriceUsd}
           pushNav={setIsPushed}
           links={links}
-        />
+        /> */}
         <Inner isPushed={isPushed} showMenu={showMenu}>
           {children}
         </Inner>

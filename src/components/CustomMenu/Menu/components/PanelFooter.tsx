@@ -10,6 +10,12 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import SocialLinks from "./SocialLinks";
 import LangSelector from "./LangSelector";
 
+
+
+// text  comment  the  twwiter  ixocn
+
+
+
 interface Props extends PanelProps, PushedProps {}
 
 const Container = styled.div`

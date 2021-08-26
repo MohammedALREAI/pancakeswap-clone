@@ -38,6 +38,7 @@ const Footer = () => {
   const { t } = useTranslation()
   return (
     <Wrapper>
+      dfddfdfdf
       <Flex flexDirection={['column', 'column', 'row']} alignItems="center">
         <ButtonMenu variant="subtle" scale="sm" activeIndex={0}>
           <ButtonMenuItem>V2</ButtonMenuItem>
