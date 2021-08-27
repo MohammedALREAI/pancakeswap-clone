@@ -3,6 +3,7 @@ import styled from "styled-components";
 import throttle from "lodash/throttle";
 import { Box, Button, Flex, Link, Overlay, Text, useMatchBreakpoints } from "@pancakeswap/uikit";
 import StyledMenulLink from "components/MyComponnet/LinkContiner";
+import { useTranslation } from 'contexts/Localization'
 import Logo, { StyledLink } from "./components/Logo";
 import Panel from "./components/Panel";
 import UserBlock from "./components/UserBlock";
@@ -82,6 +83,7 @@ const StyledNav = styled.nav<{ showMenu: boolean ,isDark?:boolean}>`
 const BodyWrapper = styled.div`
   position: relative;
   display: flex;
+  padding: 0px;
 `;
 
 const Dot = styled.div`
@@ -97,15 +99,16 @@ margin-right:13px;
 `;
 
 const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
-  flex-grow: 1;
+  flex: 1;
+  /* background: green; */
   margin-top: ${({ showMenu }) => (showMenu ? `${MENU_HEIGHT}px` : 0)};
   transition: margin-top 0.2s;
   transform: translate3d(0, 0, 0);
   max-width: 100%;
-
   ${({ theme }) => theme.mediaQueries.nav} {
-    margin-left: ${({ isPushed }) => `${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px`};
-    max-width: ${({ isPushed }) => `calc(100% - ${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px)`};
+    /* margin-left: ${({ isPushed }) => `${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px`}; */
+    /* margin:0px 0px !important; */
+    /* max-width: ${({ isPushed }) => `calc(100% - ${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px)`}; */
   }
 `;
 
@@ -163,10 +166,10 @@ font-size: 18px;
 line-height: 24px;
 text-align: right;
 text-decoration-line: underline;
-text-decoration-color: red; 
+text-decoration-color: #bbbbbb; 
 font-feature-settings: 'pnum' on, 'lnum' on;
 
-color: ${(props)=>!props.isDark?"#FFFFFF":"#161616"};
+color: ${(props)=>props.isDark?"#FFFFFF":"#161616"};
 
 `
 
@@ -221,6 +224,7 @@ const Menu: React.FC<NavProps> = ({
 
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "Home");
+  const { t } = useTranslation()
 
   return (
     <Wrapper>
@@ -237,16 +241,17 @@ const Menu: React.FC<NavProps> = ({
       <Flex>
     
        <StyledMenulLink  isDark={!!isDark} isActive to="/" aria-label="Dashboard home page">
-       Dashboard 
+       {t('dashboard')}
         </StyledMenulLink>
        <StyledMenulLink  isDark={!!isDark}  to="/swap" aria-label="Swap home page">
-       Swap 
+       {t('Swap')}
         </StyledMenulLink>
        <StyledMenulLink  isDark={!!isDark}  to="/stake" aria-label="Stake home page">
-       Stake 
+       {t('Stake')}
         </StyledMenulLink>
-       <StyledMenulLink  isDark={!!isDark}  to="/farm" aria-label="Farm home page">
-       Farm 
+       <StyledMenulLink  isDark={!!isDark}  to="/farm" aria-label="Farm home page"> 
+       {t('Farm')}
+
         </StyledMenulLink>
 
       </Flex>
@@ -260,7 +265,7 @@ const Menu: React.FC<NavProps> = ({
                 marginLeft:"24px"
           }}>
               <Dot/>
-            <MainnetText style={{textDecoration:"underline"}}>Mainnet</MainnetText>
+            <MainnetText isDark={!!isDark} style={{textDecoration:"underline"}}>Mainnet</MainnetText>
           </Flex>
           <Flex ml="68px" justifyContent="space-between" alignItems="center">
          <LangSelector currentLang={currentLang} langs={langs} setLang={setLang} />

@@ -34,7 +34,7 @@ margin: 9px;
 
 const ThemeSwitcher: React.FC<Props> = ({ isDark, toggleTheme }) => (
     <HeaderButtonIconSun  onClick={() => toggleTheme(!isDark)} alignItems="center">
-      {isDark? <SunIcon color={isDark ? "textDisabled" : "text"} width="15px" height="15px" />:<MoonIcon color={isDark ? "text" : "textDisabled"} width="15px" height="15px" />
+      {!isDark? <SunIcon color="white" width="16px" height="16px" fontWeight="700" />:<MoonIcon color="white" width="16px" height="16px" />
 } 
     </HeaderButtonIconSun>
 );
